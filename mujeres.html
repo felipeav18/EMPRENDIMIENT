@@ -1,0 +1,173 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnovEmprende</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ensayo.css">
+    <link rel="icon" href="img/empren.png">
+    <script src="https://kit.fontawesome.com/d55e038903.js" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <!--header-->
+    <div class="navbar">
+        <a href="index.html">
+            <img src="img/empren.png" width="150"
+            alt="logo energia">
+        </a>
+        <div class="navbar-brand">
+            <h1><span class="color1">Innov</span><span class="color2">Emprende</span></h1>
+        </div>
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <nav class="nav-menu">
+            <a href="empren.html">Emprendimiento</a>
+            <a href="innova.html">Innovación</a>
+            <a href="pyme.html">Pymes</a>
+            <a href="diferencia.html">Diferencia</a>
+            <a href="mujeres.html">Femeninos</a>
+        </nav>
+    </div>
+    <div class="card-texto">
+        <section class="card">
+            <div class="card-content">
+                <h1>EMPRENDIMIENTO FEMENINO</h1>
+                <p>La brecha entre hombres y mujeres en el ámbito emprendedor se ha reducido con el paso de los años, y actualmente es posible encontrar una multitud de ejemplos de mujeres emprendedoras que han conseguido el éxito. Melanie Perkins, May Kay Ash o Carlota Pi son tres de las más conocidas, pero no son las únicas. Estos ejemplos servirán de inspiración.<br><br>
+                    Las mujeres juegan un papel fundamental en el desarrollo del tejido emprendedor. A escala global, se calcula que dos de cada cinco emprendedores que se encuentran en la etapa inicial de su proyecto son mujeres y que uno de cada tres emprendimientos innovadores y de alto crecimiento están liderados por mujeres emprendedoras. Países como Marruecos, Rumania, España o República Dominicana presentan los mayores niveles de paridad entre el emprendimiento masculino y el femenino. <br> <br>
+                    Algunas de las mujeres más influyentes a nivel mundial son Melanie Perkins-Fundadora de Canva, Carlota Pi- Presidenta de Holaluz energía verde, Madam C.J. Walker primera mujer afroamerica en fundar una compañia cuando aun existia la segrgación social.</p>
+            </div>
+            <div class="card-image">
+                <img src="img/Mujeres.avif" alt="Imagen de fondo de energía eólica">
+            </div>
+        </section>
+    </div> <br>
+
+    
+    
+    <div class="card-texto">
+        <section class="card">
+            <div class="grafico">
+                <h2>Nivel de Emprendimiento de Mujeres en el Mundo (%)</h2>
+            <svg width="600" height="400"></svg>
+        
+            <script>
+                const data = [
+                    { region: "América Latina", porcentaje: 20 },
+                    { region: "Norteamérica", porcentaje: 16 },
+                    { region: "Europa", porcentaje: 10 },
+                    { region: "África", porcentaje: 26 },
+                    { region: "Asia", porcentaje: 12 }
+                ];
+        
+                const width = 600, height = 400, margin = { top: 30, right: 20, bottom: 50, left: 50 };
+        
+                const svg = d3.select("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+        
+                const x = d3.scaleBand()
+                    .domain(data.map(d => d.region))
+                    .range([margin.left, width - margin.right])
+                    .padding(0.3);
+        
+                const y = d3.scaleLinear()
+                    .domain([0, d3.max(data, d => d.porcentaje) + 5])
+                    .nice()
+                    .range([height - margin.bottom, margin.top]);
+        
+                svg.append("g")
+                    .selectAll("rect")
+                    .data(data)
+                    .enter()
+                    .append("rect")
+                    .attr("class", "bar")
+                    .attr("x", d => x(d.region))
+                    .attr("y", d => y(d.porcentaje))
+                    .attr("height", d => height - margin.bottom - y(d.porcentaje))
+                    .attr("width", x.bandwidth());
+        
+                svg.append("g")
+                    .attr("transform", `translate(0,${height - margin.bottom})`)
+                    .call(d3.axisBottom(x))
+                    .selectAll("text")
+                    .attr("dy", "0.75em")
+                    .attr("dx", "-0.5em")
+                    .attr("transform", "rotate(-25)")
+                    .style("text-anchor", "end");
+        
+                svg.append("g")
+                    .attr("transform", `translate(${margin.left},0)`)
+                    .call(d3.axisLeft(y).ticks(6).tickFormat(d => d + "%"));
+        
+                svg.append("text")
+                    .attr("class", "axis-label")
+                    .attr("x", width / 2)
+                    .attr("y", height - 10)
+                    .text("");
+        
+                svg.append("text")
+                    .attr("class", "axis-label")
+                    .attr("x", -height / 2)
+                    .attr("y", 15)
+                    .attr("transform", "rotate(-90)")
+                    .text("Porcentaje de mujeres");
+            </script>
+            </div>
+            <div class="card-content">
+                <h1>CIFRAS MUNDIALES</h1>
+                <p> África (26%): Tiene el porcentaje más alto de emprendimiento femenino debido a la necesidad de autoempleo y la informalidad del mercado laboral. <br>
+                    América Latina (20%): Crecimiento significativo gracias al acceso a financiamiento y políticas de apoyo. <br>
+                    Norteamérica (16%): Aunque es un entorno favorable, las mujeres enfrentan barreras en inversión y redes de contactos. <br>
+                    Asia (12%): Diferencias culturales y económicas afectan la participación femenina en emprendimientos. <br>
+                    Europa (10%): El porcentaje más bajo debido a un mayor acceso a empleos tradicionales y menor necesidad de autoempleo. <br>
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <div class="card-texto">
+        <section class="card">
+            <div class="card-content">
+                <h1>LAS MUJERES COLOMBIANAS EMPRENDEN</h1>
+                <p>La participación de las mujeres colombianas en el ecosistema emprendedor local sigue siendo minoritaria, según datos del último ‘Colombia Tech Report’, aunque tendencias positivas en materia de paridad y sectores pioneros como el ‘fintech’ son motivo de optimismo. Eventos como el Women Colombia Fintech ayudan a visibilizar la aportación de las mujeres colombianas a la innovación en el país.<br><br>
+                    Colombia se distingue como un país donde las mujeres desempeñan un papel significativo en el ámbito empresarial. Según datos del Registro Único Empresarial y Social (RUES), el 47,6% del total de empresas de personas naturales registradas en 2023 están lideradas por mujeres, aunque solo el 13% de las sociedades (que son unidades productivas más sólidas) son de propiedad femenina, y las mujeres son propietarias únicamente del 16% del capital de las empresas registradas como personas jurídicas. <br> <br>
+                    La participación de las mujeres en el mercado laboral es 25,9 puntos inferior a la de los hombres (del 51,78% frente al 77,68%, respectivamente), según cifras del WEF, aunque esta brecha disminuye entre los profesionales técnicos y cualificados, para los que se sitúa en 5,48 puntos. Además, solo el 12,9 % de los miembros de los consejos de administración de empresas que cotizan en bolsa en Colombia son mujeres, únicamente el 17,3% de las compañías cuenta con participación femenina mayoritaria y el 18,9% con mujeres en la alta dirección.</p>
+            </div>
+            <div class="card-image">
+                <img src="img/mujeres2.avif" alt="Imagen de fondo de energía eólica">
+            </div>
+        </section>
+    </div> <br>
+
+    
+
+ <!--footer-->
+ <footer>
+    <ul class="social_icon">
+        <li><a href="https://web.facebook.com/enelgreenpower.es/?locale=es_LA&_rdc=1&_rdr"><ion-icon name="logo-facebook"></ion-icon></a></li>
+        <li><a href="https://x.com/enelgreenpower"><i class="fa-brands fa-x-twitter"></i>
+        <li><a href="https://www.instagram.com/enelgreenpower/?hl=es"><ion-icon name="logo-instagram"></ion-icon></a></li>
+        <li><a href="https://www.youtube.com/channel/UC6VfwYnwQvgBIOSjypUOuqw"><i class="fa-brands fa-youtube"></i>
+    </ul>
+    <ul class="menu">
+        <li><a href="eolica.html">EMPRENDIMIENTO</a></li>
+        <li><a href="solar.html">INNOVACION</a></li>
+        <li><a href="pyme.html">PYMES</a></li>
+        <li><a href="diferencia.html">DIFERENCIA</a></li>
+        <li><a href="mujeres.html">FEMENINOS</a></li>
+    </ul>
+    <p>©2021 COPYRIGHT | All Rights Reserved</p>
+</footer>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <a href="https://wa.me/573145977399?text=Hola necesito información acerca de Energias Renovables" target="_blank">
+        <img src="img/whatsapp (1).png" style="width: 50px; height: 50px;" class="whatsapp-icon">
+    </a>
+    <script src="script.js"></script>
+</body>
+</html>
